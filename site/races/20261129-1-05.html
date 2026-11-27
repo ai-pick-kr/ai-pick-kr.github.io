@@ -159,7 +159,14 @@ td .rbadge{font-size:14px;padding:2px 10px}
 .ritem .bok b .nw{display:inline-block;min-width:3.2em;font-size:19px;letter-spacing:.5px}
 .day td:nth-child(7) .nw+.nw,.ritem .bok b .nw+.nw{margin-left:10px}
 @media (max-width:640px){.tbl table:has(thead th:nth-child(2):last-child) td{white-space:normal}}
-.mres .rtop{min-width:4.3em}.ritem .bok b .nw{min-width:2.9em}.ritem .bok b .nw+.nw{margin-left:6px}
+.mres .rtop{min-width:4.3em}
+/* 첫 화면 경주 표: 모든 날짜·경마장 표의 칸 위치를 똑같이 (11/27 15:35, 칸 폭은 실제 가장 긴 값 기준) */
+.day .desk table{table-layout:fixed;min-width:1010px}
+.day .desk td,.day .desk th{padding-left:9px;padding-right:9px}
+.day .desk th:nth-child(1){width:96px}.day .desk th:nth-child(2){width:68px}.day .desk th:nth-child(3){width:144px}
+.day .desk th:nth-child(4){width:54px}.day .desk th:nth-child(5){width:176px}.day .desk th:nth-child(6){width:156px}
+.day .desk th:nth-child(7){width:136px}
+.day td:nth-child(7) .nw{min-width:3em}.day td.rcell .rtop{min-width:4.3em}.ritem .bok b .nw{min-width:2.9em}.ritem .bok b .nw+.nw{margin-left:6px}
 @media (max-width:640px){
   .card[style*="padding:16px 22px"]{padding:16px 22px!important}
   .grid:has(>.bet){grid-template-columns:1fr}
@@ -213,4 +220,4 @@ background:#16201B;color:#fff;padding:12px 18px;border-radius:10px;font-size:14p
 <footer><div class="wrap">본 정보는 한국마사회 공공데이터를 바탕으로 한 분석 참고 자료이며 적중을 보장하지 않습니다.
 마권 구매의 책임은 구매자 본인에게 있습니다. 경마는 한국마사회 공식 채널에서만 즐기세요.<br>
 도박 문제로 어려움이 있다면 한국도박문제예방치유원 상담전화 1336으로 연락하세요.<br>
-마지막 업데이트: 2026-11-27 15:18</div></footer></body></html>
+마지막 업데이트: 2026-11-27 15:25</div></footer></body></html>
