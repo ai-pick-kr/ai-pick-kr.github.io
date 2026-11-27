@@ -136,6 +136,26 @@ body{word-break:keep-all;overflow-wrap:anywhere}
 .review h3:nth-of-type(1){grid-area:1/1}.review ul:nth-of-type(1){grid-area:2/1}
 .review h3:nth-of-type(2){grid-area:1/2}.review ul:nth-of-type(2){grid-area:2/2}
 .review h3:nth-of-type(3){grid-area:3/1/4/3}.review ul:nth-of-type(3){grid-area:4/1/5/3;margin-bottom:0}}.quick b .nw{font:inherit;color:inherit}
+/* ===== 11/27 화면 점검 수정: 간격·잘림·넘침 ===== */
+.pill span{font-size:14px!important;opacity:.8!important}
+.pills{scrollbar-width:none}.pills::-webkit-scrollbar{display:none}
+.card[style*="padding:16px 22px"]{padding:18px 30px!important;line-height:1.9}
+.pick{display:flex;flex-direction:column}.pick>p.muted:last-child{margin-top:auto;padding-top:14px;margin-bottom:0}
+.grid:has(>.bet){grid-template-columns:repeat(2,minmax(0,1fr))}
+.bet .muted{line-height:1.6}
+.tag{display:inline-block;font-size:13px;padding:1px 7px;border-radius:6px;background:#F0F2EF;margin-left:6px;vertical-align:2px}
+.day td{padding:14px 10px}.day th{padding:13px 10px}
+.day td:nth-child(5),.day td:nth-child(6){white-space:normal;min-width:96px}
+.day td.rcell{white-space:normal;min-width:150px}.day td.rcell .rbadge{margin-top:2px}
+.tbl.scrolls{box-shadow:inset -14px 0 12px -12px rgba(22,32,27,.25)}
+.card:has(>.tbl.scrolls)::after,.card:has(>div>.tbl.scrolls)::after{content:"← 표를 옆으로 밀면 나머지 칸을 볼 수 있어요";display:block;margin-top:10px;font-size:15px;color:#6B766F}
+td .rbadge{font-size:14px;padding:2px 10px}
+@media (max-width:640px){
+  .card[style*="padding:16px 22px"]{padding:16px 22px!important}
+  .grid:has(>.bet){grid-template-columns:1fr}
+  .quick .sep{display:none}.quick b .nw{display:block}
+  .tbl td,.tbl th{padding:12px 10px}
+}
 @media (max-width:640px){.quick b{font-size:19px;line-height:1.45}.combo{font-size:22px}}
 
 #live-toast{position:fixed;left:50%;top:14px;transform:translate(-50%,-20px);opacity:0;transition:all .35s;z-index:50;
@@ -158,8 +178,13 @@ background:#16201B;color:#fff;padding:12px 18px;border-radius:10px;font-size:14p
 <div class="card"><h2>한계</h2><ul>
 <li>경마는 변수가 많아 어떤 분석도 적중을 보장하지 않습니다.</li>
 <li>경주 당일 마체중, 기수 변경, 주로 상태 변화는 업데이트 시점에 따라 반영되지 않을 수 있습니다.</li>
-<li>과거 경주 검증에서 이 분석은 무작위 선택보다 2~4배 높은 적중률을 보였지만, 배당 인기 순위만으로 고른 경우보다는 낮았습니다. 참고 자료로만 활용하세요.</li></ul></div></main></div>
+<li>과거 경주 검증에서 이 분석은 무작위 선택보다 2~4배 높은 적중률을 보였지만, 배당 인기 순위만으로 고른 경우보다는 낮았습니다. 참고 자료로만 활용하세요.</li></ul></div></main></div><script>
+/* 표가 화면보다 넓을 때만 '옆으로 밀어 보기' 안내를 붙인다 */
+(function(){function mark(){[].forEach.call(document.querySelectorAll('.tbl'),function(t){
+  t.classList.toggle('scrolls', t.offsetParent!==null && t.scrollWidth>t.clientWidth+2);});}
+  mark(); window.addEventListener('resize',mark); setInterval(mark,3000);})();
+</script>
 <footer><div class="wrap">본 정보는 한국마사회 공공데이터를 바탕으로 한 분석 참고 자료이며 적중을 보장하지 않습니다.
 마권 구매의 책임은 구매자 본인에게 있습니다. 경마는 한국마사회 공식 채널에서만 즐기세요.<br>
 도박 문제로 어려움이 있다면 한국도박문제예방치유원 상담전화 1336으로 연락하세요.<br>
-마지막 업데이트: 2026-11-27 14:53</div></footer></body></html>
+마지막 업데이트: 2026-11-27 15:04</div></footer></body></html>
