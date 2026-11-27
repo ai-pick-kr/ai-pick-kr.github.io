@@ -120,7 +120,22 @@ body{word-break:keep-all;overflow-wrap:anywhere}
 .rpre{color:#7A857F;font-size:15px}
 .day tr.won{background:#EEF7F1}.day tr.won:hover{background:#E6F3EA}
 .mres{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:8px;font-size:16px;color:#4E5A54}
-.mres .rtop{margin-right:0}.quick b .nw{font:inherit;color:inherit}
+.mres .rtop{margin-right:0}
+/* 경주 상세 '경주 결과' 카드 + 결과 해설(.review, 개발방 11/27) */
+.card:has(.review){border-top:6px solid #16201B}
+.card:has(.review)>p:first-of-type{font-size:18px;line-height:2;background:#F5F7F4;border-radius:12px;padding:12px 16px}
+.card:has(.review)>p:first-of-type>b:first-child{font-size:22px;font-weight:900;letter-spacing:1px;margin-right:4px}
+.card:has(.review) b.hit,.card:has(.review) b.miss{display:inline-block;padding:1px 10px;border-radius:999px;font-size:15px;line-height:1.7}
+.card:has(.review) b.hit{background:#1F5D3F;color:#fff}.card:has(.review) b.miss{background:#F3E4E4;color:#8A3B3B}
+.review{margin-top:16px}
+.review h3{margin:0!important;padding:14px 18px 6px;background:#F3F6F2;border-radius:14px 14px 0 0;font-size:18px;color:#1F5D3F}
+.review ul{margin:0 0 12px;padding:4px 18px 16px 36px;background:#F3F6F2;border-radius:0 0 14px 14px}
+.review li{font-size:17px;line-height:1.75}
+.review h3:nth-of-type(3){background:#FFF6E3;color:#7A4E00}.review ul:nth-of-type(3){background:#FFF6E3}
+@media (min-width:760px){.review{display:grid;grid-template-columns:1fr 1fr;column-gap:14px}
+.review h3:nth-of-type(1){grid-area:1/1}.review ul:nth-of-type(1){grid-area:2/1}
+.review h3:nth-of-type(2){grid-area:1/2}.review ul:nth-of-type(2){grid-area:2/2}
+.review h3:nth-of-type(3){grid-area:3/1/4/3}.review ul:nth-of-type(3){grid-area:4/1/5/3;margin-bottom:0}}.quick b .nw{font:inherit;color:inherit}
 @media (max-width:640px){.quick b{font-size:19px;line-height:1.45}.combo{font-size:22px}}
 
 #live-toast{position:fixed;left:50%;top:14px;transform:translate(-50%,-20px);opacity:0;transition:all .35s;z-index:50;
@@ -197,4 +212,4 @@ background:#16201B;color:#fff;padding:12px 18px;border-radius:10px;font-size:14p
 <footer><div class="wrap">본 정보는 한국마사회 공공데이터를 바탕으로 한 분석 참고 자료이며 적중을 보장하지 않습니다.
 마권 구매의 책임은 구매자 본인에게 있습니다. 경마는 한국마사회 공식 채널에서만 즐기세요.<br>
 도박 문제로 어려움이 있다면 한국도박문제예방치유원 상담전화 1336으로 연락하세요.<br>
-마지막 업데이트: 2026-11-27 14:45</div></footer></body></html>
+마지막 업데이트: 2026-11-27 14:53</div></footer></body></html>
