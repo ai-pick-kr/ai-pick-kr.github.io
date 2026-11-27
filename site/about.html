@@ -166,6 +166,32 @@ td .rbadge{font-size:14px;padding:2px 10px}
 .day .desk th:nth-child(1){width:96px}.day .desk th:nth-child(2){width:68px}.day .desk th:nth-child(3){width:144px}
 .day .desk th:nth-child(4){width:54px}.day .desk th:nth-child(5){width:176px}.day .desk th:nth-child(6){width:156px}
 .day .desk th:nth-child(7){width:136px}
+/* 휴대폰: 출전마 표·적중 기록 표를 카드로 (11/27 15:40) */
+@media (max-width:640px){
+  .htbl,.rtbl{border:0;overflow:visible;box-shadow:none!important}
+  .htbl table,.htbl tbody,.rtbl table,.rtbl tbody{display:block}
+  .htbl thead,.rtbl thead{display:none}
+  .htbl tr,.rtbl tr{display:grid;gap:10px 12px;padding:16px;margin-bottom:12px;border:1px solid #E3E6E1;border-radius:14px;background:#fff}
+  .htbl tr.axis{background:#F1F7F3;border-color:#CFE3D6}.htbl tr.dark{background:#FFF8EA;border-color:#F1DDB4}
+  .htbl td,.rtbl td{display:block;padding:0;border:0;white-space:normal;font-size:16px}
+  .htbl td[data-label]::before,.rtbl td[data-label]::before{content:attr(data-label);display:block;font-size:13px;color:#6B766F;margin-bottom:2px}
+  .htbl tr{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .htbl td.c-no{display:none}
+  .htbl td.c-name{grid-column:1/3;grid-row:1;font-size:19px;align-self:center}
+  .htbl td.c-name::before{content:attr(data-no);display:inline-block;margin-right:6px;padding:1px 9px;border-radius:8px;background:#16201B;color:#fff;font-size:16px;font-weight:700;vertical-align:2px}
+  .htbl td.c-score{grid-column:3;grid-row:1;text-align:right}
+  .htbl td.c-score b{font-size:24px}
+  .rtbl tr{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .rtbl td.c-race{grid-column:1/3;grid-row:1;font-size:18px;font-weight:700}
+  .rtbl td.c-date{grid-column:3/5;grid-row:1;text-align:right;color:#6B766F;font-size:15px;align-self:center}
+  .rtbl td.c-top{grid-column:1/3}.rtbl td.c-pick{grid-column:3/5}
+  .rtbl td.c-top,.rtbl td.c-pick{font-size:18px;font-weight:700}
+  .rtbl tr{column-gap:18px}
+  .rtbl td.c-b{grid-column:span 2;display:flex;align-items:center;gap:6px}
+  .rtbl td.c-b::before{display:inline-block!important;min-width:2.9em;margin:0!important;font-size:14px!important}
+  .rtbl td.c-b .rbadge{font-size:13.5px;padding:2px 8px}
+  .card:has(>.htbl)::after,.card:has(>.rtbl)::after{content:none!important}
+}
 .day td:nth-child(7) .nw{min-width:3em}.day td.rcell .rtop{min-width:4.3em}.ritem .bok b .nw{min-width:2.9em}.ritem .bok b .nw+.nw{margin-left:6px}
 @media (max-width:640px){
   .card[style*="padding:16px 22px"]{padding:16px 22px!important}
@@ -204,4 +230,4 @@ background:#16201B;color:#fff;padding:12px 18px;border-radius:10px;font-size:14p
 <footer><div class="wrap">본 정보는 한국마사회 공공데이터를 바탕으로 한 분석 참고 자료이며 적중을 보장하지 않습니다.
 마권 구매의 책임은 구매자 본인에게 있습니다. 경마는 한국마사회 공식 채널에서만 즐기세요.<br>
 도박 문제로 어려움이 있다면 한국도박문제예방치유원 상담전화 1336으로 연락하세요.<br>
-마지막 업데이트: 2026-11-27 15:25</div></footer></body></html>
+마지막 업데이트: 2026-11-27 15:32</div></footer></body></html>
