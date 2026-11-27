@@ -167,6 +167,7 @@ td .rbadge{font-size:14px;padding:2px 10px}
 .day .desk th:nth-child(4){width:54px}.day .desk th:nth-child(5){width:176px}.day .desk th:nth-child(6){width:156px}
 .day .desk th:nth-child(7){width:136px}
 .htbl td,.htbl th{padding-left:11px;padding-right:11px}
+.quick b{display:flex;flex-wrap:wrap;gap:0 14px}.quick .sep{display:none}
 /* 휴대폰: 출전마 표·적중 기록 표를 카드로 (11/27 15:40) */
 @media (max-width:640px){
   .htbl,.rtbl{border:0;overflow:visible;box-shadow:none!important}
@@ -195,6 +196,18 @@ td .rbadge{font-size:14px;padding:2px 10px}
 }
 @media (max-width:380px){.rtbl tr{column-gap:10px;padding:14px}.rtbl td.c-b{gap:4px}.rtbl td.c-b::before{min-width:2.6em;font-size:13px!important}.rtbl td.c-b .rbadge{font-size:13px;padding:2px 7px}}
 @media (max-width:340px){.rtbl td.c-b{grid-column:1/5}.rtbl td.c-top,.rtbl td.c-pick{grid-column:1/5}}
+/* 윤곽선 진하게: 흰 배경에서도 칸·줄이 보이게 (11/27 19:15) */
+.tbl{border:1px solid #A3AFA7}
+td,th{border-bottom:1px solid #BCC6BF}
+th{background:#E6ECE7;color:#2F3A35;border-bottom:2px solid #93A098}
+.tbl tbody tr:last-child td{border-bottom:0}
+.tbl tbody tr:nth-child(even):not(.won):not(.axis):not(.dark){background:#F8FAF8}
+.tbl tbody tr:hover:not(.won):not(.axis):not(.dark){background:#F0F5F1}
+.bet{border-color:#AFBAB2}
+.ritem{border-top-color:#C3CCC5}
+header{box-shadow:0 1px 0 #D3DAD5,0 4px 14px rgba(22,32,27,.05)}
+footer{border-top-color:#D3DAD5}
+@media (max-width:640px){.htbl tr,.rtbl tr{border-color:#AFBAB2}.htbl tr:nth-child(even):not(.axis):not(.dark),.rtbl tr:nth-child(even){background:#fff}}
 .day td:nth-child(7) .nw{min-width:3em}.day td.rcell .rtop{min-width:4.3em}.ritem .bok b .nw{min-width:2.9em}.ritem .bok b .nw+.nw{margin-left:6px}
 @media (max-width:640px){
   .card[style*="padding:16px 22px"]{padding:16px 22px!important}
@@ -233,4 +246,4 @@ background:#16201B;color:#fff;padding:12px 18px;border-radius:10px;font-size:14p
 <footer><div class="wrap">본 정보는 한국마사회 공공데이터를 바탕으로 한 분석 참고 자료이며 적중을 보장하지 않습니다.
 마권 구매의 책임은 구매자 본인에게 있습니다. 경마는 한국마사회 공식 채널에서만 즐기세요.<br>
 도박 문제로 어려움이 있다면 한국도박문제예방치유원 상담전화 1336으로 연락하세요.<br>
-마지막 업데이트: 2026-11-27 18:50</div></footer></body></html>
+마지막 업데이트: 2026-11-27 19:14</div></footer></body></html>
