@@ -79,9 +79,9 @@ td,th{padding:15px 14px}th{font-size:15px;font-weight:700;color:#4E5A54;backgrou
 tbody tr:hover{background:#F6FAF7}
 .day td:first-child a{display:inline-flex;align-items:center;justify-content:center;min-width:64px;padding:6px 10px;border-radius:10px;background:#1F5D3F;color:#fff;text-decoration:none}
 .day.m3 td:first-child a{background:#2F5C8F}.day.m2 td:first-child a{background:#C27A1A}
-.day td:nth-child(2){font-weight:700;font-variant-numeric:tabular-nums}
-.day td:nth-child(5){font-weight:700}
-.day td:nth-child(7){font-weight:900;font-size:18px;color:#1F5D3F;letter-spacing:.5px}
+.day td.c-time{font-weight:700;font-variant-numeric:tabular-nums}
+.day td.c-axis{font-weight:700}
+.day td.c-bok{font-weight:900;font-size:18px;color:#1F5D3F;letter-spacing:.5px}
 /* 휴대폰 목록 */
 .ritem{padding:18px 4px}.ritem .t b{font-size:20px}.ritem .s{font-size:17px;line-height:1.75;margin-top:8px}
 /* 경주 상세 */
@@ -145,7 +145,7 @@ body{word-break:keep-all;overflow-wrap:anywhere}
 .bet .muted{line-height:1.6}
 .tag{display:inline-block;font-size:13px;padding:1px 7px;border-radius:6px;background:#F0F2EF;margin-left:6px;vertical-align:2px}
 .day td{padding:14px 10px}.day th{padding:13px 10px}
-.day td:nth-child(5),.day td:nth-child(6){white-space:normal;min-width:96px}
+.day td.c-axis,.day td.c-dark,.day td.c-cond{white-space:normal}
 .day td.rcell{white-space:normal;min-width:150px}.day td.rcell .rbadge{margin-top:2px}
 .tbl.scrolls{box-shadow:inset -14px 0 12px -12px rgba(22,32,27,.25)}
 .card:has(>.tbl.scrolls)::after,.card:has(>div>.tbl.scrolls)::after{content:"← 표를 옆으로 밀면 나머지 칸을 볼 수 있어요";display:block;margin-top:10px;font-size:15px;color:#6B766F}
@@ -154,20 +154,20 @@ td .rbadge{font-size:14px;padding:2px 10px}
 .day td,.ritem,.quick b,.combo{font-variant-numeric:tabular-nums}
 .day td.rcell .rtop,.mres .rtop{display:inline-block;min-width:4.7em;margin-right:4px}
 .day td.rcell{white-space:nowrap}
-.day td:nth-child(7),.ritem .bok b{font-size:0!important;letter-spacing:0}
-.day td:nth-child(7) .nw{display:inline-block;min-width:3.2em;font-size:18px;letter-spacing:.5px}
+.day td.c-bok,.ritem .bok b{font-size:0!important;letter-spacing:0}
+.day td.c-bok .nw{display:inline-block;min-width:3.2em;font-size:18px;letter-spacing:.5px}
 .ritem .bok b .nw{display:inline-block;min-width:3.2em;font-size:19px;letter-spacing:.5px}
-.day td:nth-child(7) .nw+.nw,.ritem .bok b .nw+.nw{margin-left:10px}
+.day td.c-bok .nw+.nw,.ritem .bok b .nw+.nw{margin-left:10px}
 @media (max-width:640px){.tbl table:has(thead th:nth-child(2):last-child) td{white-space:normal}}
 .mres .rtop{min-width:4.3em}
 /* 첫 화면 경주 표: 모든 날짜·경마장 표의 칸 위치를 똑같이 (11/27 15:35, 칸 폭은 실제 가장 긴 값 기준) */
 .day .desk table{table-layout:fixed;min-width:1010px}
 .day .desk td,.day .desk th{padding-left:9px;padding-right:9px}
-.day .desk th:nth-child(1){width:96px}.day .desk th:nth-child(2){width:68px}.day .desk th:nth-child(3){width:144px}
-.day .desk th:nth-child(4){width:54px}.day .desk th:nth-child(5){width:176px}.day .desk th:nth-child(6){width:156px}
-.day .desk th:nth-child(7){width:136px}
+.day .desk th:nth-child(1){width:96px}.day .desk th:nth-child(2){width:64px}.day .desk th:nth-child(3){width:186px}
+.day .desk th:nth-child(4){width:160px}.day .desk th:nth-child(5){width:155px}.day .desk th:nth-child(6){width:192px}
+.day td.c-cond{white-space:nowrap!important}
 .htbl td,.htbl th{padding-left:11px;padding-right:11px}
-.quick b{display:flex;flex-wrap:wrap;gap:0 14px}.quick .sep{display:none}
+.quick b{display:flex;flex-direction:column;gap:2px}.quick .sep{display:none}
 /* 휴대폰: 출전마 표·적중 기록 표를 카드로 (11/27 15:40) */
 @media (max-width:640px){
   .htbl,.rtbl{border:0;overflow:visible;box-shadow:none!important}
@@ -205,6 +205,25 @@ th{background:#E6ECE7;color:#2F3A35;border-bottom:2px solid #93A098}
 .tbl tbody tr:hover:not(.won):not(.axis):not(.dark){background:#EFEFEE}
 .day tr.won{background:#DDEFE3}.day tr.won:hover{background:#D3EADB}
 .day tr.won td:first-child{box-shadow:inset 4px 0 0 #1F5D3F}
+/* 추천 경주 표시 (11/27 20:10, 새 모델 info.recommend) */
+span.rec{display:inline-block;font-size:13px;font-weight:700;padding:1px 8px;border-radius:999px;line-height:1.6;white-space:nowrap}
+span.rec.on{background:#FFE08A;color:#5C3D00;box-shadow:inset 0 0 0 2px #D9A400}
+span.rec.off{background:#E3E7E4;color:#4A554F;box-shadow:inset 0 0 0 1px #A9B3AC}
+.day td.c-race .rec{display:block;width:max-content;margin-top:6px}
+.day td.c-cond .dusu{color:#4E5A54}
+.reccount{font-size:15px;font-weight:700;color:#5C3D00;background:#FFF1C2;padding:3px 10px;border-radius:999px;box-shadow:inset 0 0 0 1px #E3BD4A}
+.ritem .t .rec{font-size:14px}
+.recbar{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin:-4px 0 14px;padding:12px 16px;border-radius:12px;font-size:16px}
+.recbar b{font-size:18px;white-space:nowrap}
+.recbar.on{background:#FFF1C2;color:#4A3200;box-shadow:inset 0 0 0 2px #E3BD4A}
+.recbar.off{background:#ECEFEC;color:#3F4A44;box-shadow:inset 0 0 0 1px #B3BDB6}
+.pill .star{font-style:normal;color:#C98A00;margin-right:3px}.pill.on .star{color:#FFD54F}
+.combo{display:flex;flex-wrap:wrap;gap:2px 16px}.combo .sep{display:none}
+.pick b.prob{font-size:20px;color:#16201B}
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:4px 0 18px}
+.facts div{background:#F3F6F2;border-radius:12px;padding:14px 16px;box-shadow:inset 0 0 0 1px #C9D1CB}
+.facts span{display:block;font-size:14px;color:#4E5A54}.facts b{display:block;font-size:22px;font-weight:900;margin-top:4px}
+@media (max-width:760px){.facts{grid-template-columns:repeat(2,minmax(0,1fr))}.facts b{font-size:19px}}
 /* 연한 배지·꼬리표 진하게 (11/27 19:25) */
 .rbadge.off,.card:has(.review) b.miss{background:#F2C6C6;color:#7A1C1C;box-shadow:inset 0 0 0 2px #C26A6A}
 .rbadge.void{background:#D9DFDB;color:#2F3934;box-shadow:inset 0 0 0 2px #8F9B94}
@@ -217,7 +236,7 @@ th{background:#E6ECE7;color:#2F3A35;border-bottom:2px solid #93A098}
 header{box-shadow:0 1px 0 #D3DAD5,0 4px 14px rgba(22,32,27,.05)}
 footer{border-top-color:#D3DAD5}
 @media (max-width:640px){.htbl tr,.rtbl tr{border-color:#AFBAB2}.htbl tr:nth-child(even):not(.axis):not(.dark),.rtbl tr:nth-child(even){background:#fff}}
-.day td:nth-child(7) .nw{min-width:3em}.day td.rcell .rtop{min-width:4.3em}.ritem .bok b .nw{min-width:2.9em}.ritem .bok b .nw+.nw{margin-left:6px}
+.day td.c-bok .nw{min-width:2.8em}.day td.rcell .rtop{min-width:4.3em}.ritem .bok b .nw{min-width:2.9em}.ritem .bok b .nw+.nw{margin-left:6px}
 @media (max-width:640px){
   .card[style*="padding:16px 22px"]{padding:16px 22px!important}
   .grid:has(>.bet){grid-template-columns:1fr}
@@ -235,18 +254,30 @@ background:#16201B;color:#fff;padding:12px 18px;border-radius:10px;font-size:14p
 </style></head><body><div id="live-toast" role="status" aria-live="polite"></div>
 <header><div class="wrap"><a class="logo" href="index.html"><span>AI</span>경마 AI 분석</a><nav><a href="index.html" class="">이번 주 경주</a><a href="record.html" class="">적중 기록</a><a href="about.html" class="on">분석 방법</a></nav></div></header>
 <div class="wrap"><main><div class="card"><h1>분석 방법</h1><p class="muted" style="margin:10px 0 0">모든 수치는 한국마사회가 공공데이터포털에 공개한 출전표와 경주 성적을 기반으로 계산합니다.</p></div>
-<div class="card"><h2>AI 점수 구성 비율</h2><div class="tbl"><table><thead><tr><th>항목</th><th>비중</th></tr></thead><tbody><tr><td>최근 성적 (최근 5전 착순, 최근 경주일수록 크게 반영)</td><td><b>21%</b></td></tr><tr><td>기록 지수 (같은 경마장·거리 평균 대비 빠르기)</td><td><b>17%</b></td></tr><tr><td>기수 최근 90일 입상률</td><td><b>16%</b></td></tr><tr><td>지난 3경주 확정 단승 배당 (경마팬들의 평가)</td><td><b>16%</b></td></tr><tr><td>조교사 최근 90일 입상률</td><td><b>8%</b></td></tr><tr><td>이전 기록 기준 입상률</td><td><b>5%</b></td></tr><tr><td>출발번호 유불리 (경마장·거리별 과거 기록)</td><td><b>4%</b></td></tr><tr><td>젖은 주로 적성 (함수율 10% 이상인 날만)</td><td><b>4%</b></td></tr><tr><td>레이팅</td><td><b>3%</b></td></tr><tr><td>전개 유불리 (선행마 수에 따른 각질별 유리·불리)</td><td><b>3%</b></td></tr><tr><td>같은 거리 성적</td><td><b>1%</b></td></tr><tr><td>당일 마체중 변화 폭 (클수록 감점)</td><td><b>1%</b></td></tr></tbody></table></div><p class="muted" style="margin:12px 0 0">각 항목을 출전마끼리 비교해 표준화한 뒤 위 비율로 합산해 100점 만점으로 표시합니다. 비율은 2024년 3월~2026년 9월 실제 경주 약 6,400개로 학습하고 2026년 10~11월 경주로 따로 검증해 정했습니다.</p></div><div class="card"><h2>함께 보여주는 정보</h2><ul>
+<div class="card"><h2>1착 확률 모델</h2>
+<div class="facts"><div><span>학습한 경주</span><b>3년 치 7천여 경주</b></div><div><span>사용하는 지표</span><b>42개</b></div><div><span>과거 검증 · 복승 3조합 적중</span><b>31%</b></div><div><span>과거 검증 · 추천 경주 복승 적중</span><b>39%</b></div></div>
+<ul>
+<li>최근 3년 동안 실제로 열린 7천여 경주의 출전표와 결과를 학습해, 출전마마다 <b>1착 할 확률</b>을 계산합니다.</li>
+<li>최근 성적, 기록 지수(같은 경마장·거리 평균 대비 빠르기), 막판 200m 기록, 기수·조교사 성적, 직전 경주 배당, 부담중량, 출발번호, 각질과 전개, 주로 상태, 당일 마체중 등 42개 지표를 함께 봅니다.</li>
+<li>말마다 계산한 1착 확률로 순위를 정하고, 그 확률을 바탕으로 승식별 조합을 고릅니다.</li>
+</ul></div>
+<div class="card"><h2>추천 경주와 참고 경주</h2><ul>
+<li><b>추천 경주</b>: 복승 상위 2조합의 확률 합이 높은 경주, 즉 1·2착 후보가 비교적 뚜렷한 경주입니다. 과거 검증에서 이런 경주의 복승 3조합 적중률은 약 39%였습니다. 하루 2~7개 정도입니다.</li>
+<li><b>혼전 · 참고용</b>: 1·2착 후보가 뚜렷하지 않은 경주입니다. 분석은 똑같이 공개하지만 참고로만 보시기 바랍니다.</li>
+</ul></div>
+<div class="card"><h2>축마·상대마·복병마와 추천 조합</h2><ul>
+<li>축마는 1착 확률 1위, 상대마는 2위입니다.</li>
+<li>복승·쌍승·삼복승·삼쌍승 4가지 승식에 각각 확률이 높은 3조합씩 추천합니다. 삼쌍승은 1·2·3착 순서를 모두 맞혀야 하는 가장 어려운 승식입니다.</li>
+<li>복병마는 확률 3위 아래에서 직전 부진 후 반등 신호, 기수 교체, 부담중량 감소, 높은 기록 지수 같은 근거가 있는 말을 고릅니다.</li>
+</ul></div>
+<div class="card"><h2>함께 보여주는 정보</h2><ul>
 <li>경주 전 발표된 기수 변경과 출전 취소는 반영해서 다시 계산합니다.</li>
 <li>막판 200m 기록, 각질(선행·선입·추입), 최근 14일 조교량, 주로 함수율, 직전 경주 배당, 당일 마체중, 최근 진료 기록, 직전 경주 심판 기록, 첫 출전마 혈통은 근거로 함께 표시합니다.</li>
 <li>모든 데이터는 한국마사회가 공공데이터포털에 공개한 자료입니다.</li></ul></div>
-<div class="card"><h2>축마·상대마·복병마</h2><ul>
-<li>축마는 AI 점수 1위, 상대마는 2위입니다.</li>
-<li>복승·쌍승·삼복승·삼쌍승 4가지 승식에 각각 2조합씩 추천합니다. 삼쌍승은 1·2·3착 순서를 모두 맞혀야 하는 가장 어려운 승식입니다.</li>
-<li>복병마는 점수 3~6위 중 직전 부진 후 반등 신호, 기수 교체, 부담중량 감소, 높은 기록 지수 같은 근거가 있는 말을 고릅니다.</li></ul></div>
 <div class="card"><h2>한계</h2><ul>
 <li>경마는 변수가 많아 어떤 분석도 적중을 보장하지 않습니다.</li>
-<li>경주 당일 마체중, 기수 변경, 주로 상태 변화는 업데이트 시점에 따라 반영되지 않을 수 있습니다.</li>
-<li>과거 경주 검증에서 이 분석은 무작위 선택보다 2~4배 높은 적중률을 보였지만, 배당 인기 순위만으로 고른 경우보다는 낮았습니다. 참고 자료로만 활용하세요.</li></ul></div></main></div><script>
+<li>위 적중률은 과거 경주로 검증한 값이며, 앞으로도 같은 결과가 나온다는 뜻은 아닙니다.</li>
+<li>경주 당일 마체중, 기수 변경, 주로 상태 변화는 업데이트 시점에 따라 반영되지 않을 수 있습니다. 참고 자료로만 활용하세요.</li></ul></div></main></div><script>
 /* 표가 화면보다 넓을 때만 '옆으로 밀어 보기' 안내를 붙인다 */
 (function(){function mark(){[].forEach.call(document.querySelectorAll('.tbl'),function(t){
   t.classList.toggle('scrolls', t.offsetParent!==null && t.scrollWidth>t.clientWidth+2);});}
@@ -255,4 +286,4 @@ background:#16201B;color:#fff;padding:12px 18px;border-radius:10px;font-size:14p
 <footer><div class="wrap">본 정보는 한국마사회 공공데이터를 바탕으로 한 분석 참고 자료이며 적중을 보장하지 않습니다.
 마권 구매의 책임은 구매자 본인에게 있습니다. 경마는 한국마사회 공식 채널에서만 즐기세요.<br>
 도박 문제로 어려움이 있다면 한국도박문제예방치유원 상담전화 1336으로 연락하세요.<br>
-마지막 업데이트: 2026-11-27 19:25</div></footer></body></html>
+마지막 업데이트: 2026-11-27 20:05</div></footer></body></html>
