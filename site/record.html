@@ -166,6 +166,7 @@ td .rbadge{font-size:14px;padding:2px 10px}
 .day .desk th:nth-child(1){width:96px}.day .desk th:nth-child(2){width:68px}.day .desk th:nth-child(3){width:144px}
 .day .desk th:nth-child(4){width:54px}.day .desk th:nth-child(5){width:176px}.day .desk th:nth-child(6){width:156px}
 .day .desk th:nth-child(7){width:136px}
+.htbl td,.htbl th{padding-left:11px;padding-right:11px}
 /* 휴대폰: 출전마 표·적중 기록 표를 카드로 (11/27 15:40) */
 @media (max-width:640px){
   .htbl,.rtbl{border:0;overflow:visible;box-shadow:none!important}
@@ -192,6 +193,8 @@ td .rbadge{font-size:14px;padding:2px 10px}
   .rtbl td.c-b .rbadge{font-size:13.5px;padding:2px 8px}
   .card:has(>.htbl)::after,.card:has(>.rtbl)::after{content:none!important}
 }
+@media (max-width:380px){.rtbl tr{column-gap:10px;padding:14px}.rtbl td.c-b{gap:4px}.rtbl td.c-b::before{min-width:2.6em;font-size:13px!important}.rtbl td.c-b .rbadge{font-size:13px;padding:2px 7px}}
+@media (max-width:340px){.rtbl td.c-b{grid-column:1/5}.rtbl td.c-top,.rtbl td.c-pick{grid-column:1/5}}
 .day td:nth-child(7) .nw{min-width:3em}.day td.rcell .rtop{min-width:4.3em}.ritem .bok b .nw{min-width:2.9em}.ritem .bok b .nw+.nw{margin-left:6px}
 @media (max-width:640px){
   .card[style*="padding:16px 22px"]{padding:16px 22px!important}
@@ -218,4 +221,4 @@ background:#16201B;color:#fff;padding:12px 18px;border-radius:10px;font-size:14p
 <footer><div class="wrap">본 정보는 한국마사회 공공데이터를 바탕으로 한 분석 참고 자료이며 적중을 보장하지 않습니다.
 마권 구매의 책임은 구매자 본인에게 있습니다. 경마는 한국마사회 공식 채널에서만 즐기세요.<br>
 도박 문제로 어려움이 있다면 한국도박문제예방치유원 상담전화 1336으로 연락하세요.<br>
-마지막 업데이트: 2026-11-27 15:32</div></footer></body></html>
+마지막 업데이트: 2026-11-27 15:36</div></footer></body></html>
