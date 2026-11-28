@@ -260,34 +260,48 @@ background:#16201B;color:#fff;padding:12px 18px;border-radius:10px;font-size:14p
   t.classList.toggle('scrolls', t.offsetParent!==null && t.scrollWidth>t.clientWidth+2);});}
   mark(); window.addEventListener('resize',mark); setInterval(mark,3000);})();
 </script><script>
+/* [개발방 11/28] 새로고침 없이 자동 반영: 20초마다 live/stamp.json 확인 → 바뀌었으면 이 페이지 내용만 다시 받아 교체.
+   다른 탭·화면 꺼짐이면 확인을 멈추고, 다시 보면 바로 확인. 오늘 남은 경주가 없으면(stamp.active=false) 확인을 멈춤. */
 (function(){
   var box=document.getElementById('live-main'); if(!box) return;
   var src=box.getAttribute('data-live'), base=box.getAttribute('data-base'), cur=box.getAttribute('data-v'), stamp=null;
-  var stat=document.getElementById('live-stat');
-  function toast(t){var el=document.getElementById('live-toast'); el.textContent=t; el.classList.add('on');
+  var stat=document.getElementById('live-stat'), timer=null, busy=false, stopped=false;
+  function toast(t){var el=document.getElementById('live-toast'); if(!el) return; el.textContent=t; el.classList.add('on');
     clearTimeout(el._t); el._t=setTimeout(function(){el.classList.remove('on')},6000);}
   function hhmmss(){var d=new Date();return d.toTimeString().slice(0,8);}
-  function check(){
-    if(document.visibilityState!=='visible') return;
-    fetch(base+'live/stamp.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()}).then(function(s){
-      if(stat) stat.textContent='실시간 확인 중 · '+hhmmss();
-      if(stamp===s.v) return; stamp=s.v;
-      return fetch(src+'?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()}).then(function(d){
-        if(!d || d.v===cur) return;
-        var open=[].map.call(box.querySelectorAll('details'),function(x){return x.open});
-        var y=window.scrollY;
-        box.innerHTML=d.html; cur=d.v; if(window.dayFilter) window.dayFilter();
-        [].forEach.call(box.querySelectorAll('details'),function(x,i){if(open[i]) x.open=true});
-        window.scrollTo(0, y);
-        [].forEach.call(box.querySelectorAll('[data-hot]'),function(x){x.classList.add('live-flash')});
-        toast(d.note || '최신 정보가 반영됐습니다');
-      });
-    }).catch(function(){ if(stat) stat.textContent='실시간 확인 일시 중단 · 잠시 후 다시 시도'; });
+  function setStat(t){ if(stat) stat.textContent=t; }
+  function start(){ if(!timer && !stopped) timer=setInterval(check,20000); }
+  function stop(){ if(timer){ clearInterval(timer); timer=null; } }
+  function apply(d){
+    if(!d || d.v===cur) return;
+    var open=[].map.call(box.querySelectorAll('details'),function(x){return x.open});
+    var y=window.scrollY, x0=window.scrollX;
+    box.innerHTML=d.html; cur=d.v; if(window.dayFilter) window.dayFilter();
+    [].forEach.call(box.querySelectorAll('details'),function(x,i){if(open[i]) x.open=true});
+    window.scrollTo(x0, y);
+    [].forEach.call(box.querySelectorAll('[data-hot]'),function(x){x.classList.remove('live-flash'); void x.offsetWidth; x.classList.add('live-flash')});
+    toast(d.note || '최신 정보가 반영됐습니다');
+    try{ document.dispatchEvent(new CustomEvent('live:updated')); }catch(e){}
   }
-  setInterval(check,20000); document.addEventListener('visibilitychange',check);
+  function check(){
+    if(document.visibilityState!=='visible' || busy) return;
+    busy=true;
+    fetch(base+'live/stamp.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()}).then(function(s){
+      var next = (stamp===s.v) ? null : fetch(src+'?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()}).then(apply);
+      stamp=s.v;
+      return Promise.resolve(next).then(function(){
+        if(s.active===false){ stopped=true; stop(); setStat('오늘 남은 경주가 없어 실시간 확인을 멈췄습니다 · 마지막 확인 '+hhmmss()); }
+        else { stopped=false; start(); setStat('실시간 확인 중 · '+hhmmss()); }
+      });
+    }).catch(function(){ setStat('실시간 확인 일시 중단 · 잠시 후 다시 시도'); }).then(function(){ busy=false; });
+  }
+  document.addEventListener('visibilitychange',function(){
+    if(document.visibilityState==='visible'){ check(); start(); } else { stop(); }
+  });
+  check(); start();
 })();
 </script>
 <footer><div class="wrap">본 정보는 한국마사회 공공데이터를 바탕으로 한 분석 참고 자료이며 적중을 보장하지 않습니다.
 마권 구매의 책임은 구매자 본인에게 있습니다. 경마는 한국마사회 공식 채널에서만 즐기세요.<br>
 도박 문제로 어려움이 있다면 한국도박문제예방치유원 상담전화 1336으로 연락하세요.<br>
-마지막 업데이트: 2026-11-28 14:34</div></footer></body></html>
+마지막 업데이트: 2026-11-28 14:37</div></footer></body></html>
